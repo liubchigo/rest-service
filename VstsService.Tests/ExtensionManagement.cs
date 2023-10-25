@@ -85,7 +85,7 @@ namespace SecurePipelineScan.VstsService.Tests
                     "vss-analytics",
                     "DevOps Demo"), result));
            
-            ex.Call.HttpStatus.ShouldBe(HttpStatusCode.BadRequest);
+            ex.Call.Response.StatusCode.ShouldBe(400);
         }
 
         private class TestObject : ExtensionData

@@ -65,7 +65,7 @@ namespace SecurePipelineScan.VstsService.Tests
             buildDefinition.Id.ShouldNotBeNull();
             buildDefinition.Name.ShouldNotBeNull();
             buildDefinition.Project.ShouldNotBeNull();
-            buildDefinition.Process.Type.ShouldNotBeNull();
+            buildDefinition.Process.Type.ShouldNotBe(0);
             buildDefinition.Process.Phases.First().Steps.First().Task.Id.ShouldNotBeNull();
             buildDefinition.Repository.ShouldNotBeNull();
             buildDefinition.Repository.Url.ShouldNotBeNull();
@@ -116,7 +116,7 @@ namespace SecurePipelineScan.VstsService.Tests
 
             retentionSettings.ShouldNotBeNull();
             retentionSettings.PurgeRuns.ShouldNotBeNull();
-            retentionSettings.PurgeRuns.Value.ShouldNotBeNull();
+            retentionSettings.PurgeRuns.Value.ShouldNotBe(0);
         }
     }
 }

@@ -58,7 +58,7 @@ namespace SecurePipelineScan.VstsService.Tests
 
             var deploy = env.DeploySteps.First();
             deploy.RequestedFor.ShouldNotBeNull();
-            deploy.RequestedFor.Id.ShouldNotBeNull();
+            deploy.RequestedFor.Id.ShouldNotBe(Guid.Empty);
             deploy.LastModifiedBy.ShouldNotBeNull();
 
             var predeploy = env.PreDeployApprovals.First();

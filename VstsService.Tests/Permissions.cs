@@ -120,7 +120,7 @@ namespace SecurePipelineScan.VstsService.Tests
                     projectId, permissionSetId, applicationGroupId, $"{projectId}/{buildDefinition.Id}")));
 
                 permissionsGroupSetId.ShouldNotBeNull();
-                permissionsGroupSetId.Permissions.First().PermissionId.ShouldNotBeNull();
+                permissionsGroupSetId.Permissions.ShouldContain(p => p.PermissionId != 0);
             }
         }
 

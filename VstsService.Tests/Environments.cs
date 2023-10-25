@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using SecurePipelineScan.VstsService.Requests;
@@ -59,7 +60,7 @@ namespace SecurePipelineScan.VstsService.Tests
             var group = groups.First();
             group.Identity.ShouldNotBeNull();
             group.Identity.DisplayName.ShouldNotBeNull();
-            group.Identity.Id.ShouldNotBeNull();
+            group.Identity.Id.ShouldNotBe(Guid.Empty);
             group.Role.ShouldNotBeNull();
             group.Role.Name.ShouldNotBeNull();
         }

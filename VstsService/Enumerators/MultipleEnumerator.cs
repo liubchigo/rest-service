@@ -19,7 +19,7 @@ namespace SecurePipelineScan.VstsService.Enumerators
                 var task = request.GetAsync();
 
                 var response = task.ConfigureAwait(false).GetAwaiter().GetResult();
-                if (response.StatusCode == HttpStatusCode.NotFound)
+                if (response.StatusCode == 404)
                 {
                     throw new NotFoundException(request.Url.ToString());
                 }
@@ -30,7 +30,7 @@ namespace SecurePipelineScan.VstsService.Enumerators
                     yield return item;
                 }
 
-                more = response.Headers.TryGetValues("x-ms-continuationtoken", out var tokens);                
+                more = response.Headers.TryGetFirst("x-ms-continuationtoken", out var tokens);                
                 request.SetQueryParam("continuationToken", tokens?.First());
             } 
         }

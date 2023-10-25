@@ -23,7 +23,7 @@ namespace SecurePipelineScan.VstsService.Tests
         {
             var projectId = _client
                 .Get(Requests.Project.Projects())
-                .Single(x => x.Name == "SOx-compliant-demo").Id;
+                .Single(x => x.Name == _config.Project).Id;
 
             var groupId = (await _client
                 .GetAsync(Requests.Security.Groups(projectId)))
@@ -46,7 +46,7 @@ namespace SecurePipelineScan.VstsService.Tests
         {
             var projectId = _client
                 .Get(Requests.Project.Projects())
-                .Single(x => x.Name == "SOx-compliant-demo").Id;
+                .Single(x => x.Name == _config.Project).Id;
 
             var groupId = (await _client
                 .GetAsync(Requests.Security.Groups(projectId)))
