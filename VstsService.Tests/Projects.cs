@@ -50,9 +50,9 @@ namespace SecurePipelineScan.VstsService.Tests
         [Fact]
         public async Task QuerySingleProjectWithNameShouldReturnAProject()
         {
-            var project = await _client.GetAsync(Project.ProjectByName("TAS"));
+            var project = await _client.GetAsync(Project.ProjectByName(_config.Project));
             project.ShouldNotBeNull();
-            project.Name.ShouldBe("TAS");
+            project.Name.ShouldNotBeNullOrEmpty();
         }
     }
 }

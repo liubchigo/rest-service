@@ -19,6 +19,9 @@ namespace SecurePipelineScan.VstsService.Tests
             _client = new VstsRestClient(config.Organization, config.Token);
         }
 
+        /// <summary>
+        /// Same pre-requisite as <see cref="GetAllPoliciesConvertsToSpecific" />
+        /// </summary>
         [Fact]
         public void QueryRequiredReviewersPolicies()
         {
@@ -58,7 +61,7 @@ namespace SecurePipelineScan.VstsService.Tests
         [Fact]
         public async Task QueryPolicy()
         {
-            var result = await _client.GetAsync(Requests.Policies.Policy(_config.Project, 28));
+            var result = await _client.GetAsync(Requests.Policies.Policy(_config.Project, 1));
             result.ShouldNotBeNull();
         }
 
@@ -74,6 +77,10 @@ namespace SecurePipelineScan.VstsService.Tests
             result.Any(e => e.IsEnabled).ShouldBeTrue();
         }
 
+        /// <summary>
+        /// Prerequisite:
+        ///   Add an "Automatically included reviewers" policy to a random branch policies in a random repository
+        /// </summary>
         [Fact]
         public void GetAllPoliciesConvertsToSpecific()
         {

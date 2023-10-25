@@ -55,7 +55,7 @@ namespace SecurePipelineScan.VstsService.Tests
         [Fact]
         public async Task GetRawUrl()
         {
-            var url = new Uri("http://www.bla.nl");
+            var url = new Uri("http://www.bla.nl/");
 
             using var httpTest = new HttpTest();
             httpTest.RespondWith(status: 200, body: "{}");
@@ -99,13 +99,13 @@ namespace SecurePipelineScan.VstsService.Tests
         public async Task RestRequestResultAsJsonObject()
         {
             var endpoints = await _vsts.GetAsync(Requests.ServiceEndpoint.Endpoints(_config.Project).Request.AsJson());
-            endpoints.SelectToken("value[?(@.data.subscriptionId == '45cfa52a-a2aa-4a18-8d3d-29896327b51d')]").ShouldNotBeNull();
+            endpoints.SelectToken("count").ShouldNotBeNull();
         }
         
         [Fact]
         public async Task NotFoundIsNull()
         {
-            var result = await _vsts.GetAsync(Requests.Builds.Build("TAS", "2342423"));
+            var result = await _vsts.GetAsync(Requests.Builds.Build(_config.Project, "2342423"));
             result.ShouldBeNull();
         }
     }

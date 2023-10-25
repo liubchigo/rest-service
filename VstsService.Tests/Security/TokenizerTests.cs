@@ -28,7 +28,7 @@ namespace Functions.Tests
             var token = tokenizer1.Token();
 
             tokenizer1.Principal(token).ShouldNotBeNull();
-            Assert.Throws<SecurityTokenInvalidSignatureException>(() => tokenizer2.Principal(token));
+            Assert.Throws<SecurityTokenSignatureKeyNotFoundException>(() => tokenizer2.Principal(token));
         }
 
         [Fact]

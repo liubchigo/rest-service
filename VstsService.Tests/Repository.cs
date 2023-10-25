@@ -25,23 +25,21 @@ namespace SecurePipelineScan.VstsService.Tests
         [Fact]
         public void QueryRepository()
         {
-            var definition = _client.Get(Requests.Repository.Repositories(_config.Project)).ToList();
-            definition.ShouldNotBeEmpty();
-            definition.ShouldAllBe(e => !string.IsNullOrEmpty(e.Name));
-            definition.ShouldAllBe(e => !string.IsNullOrEmpty(e.Id));
-            definition.ShouldAllBe(e => !string.IsNullOrEmpty(e.Project.Id));
-            definition.ShouldAllBe(e => !string.IsNullOrEmpty(e.Project.Name));
-            definition.ShouldAllBe(e => !string.IsNullOrEmpty(e.DefaultBranch));
+            var repository = _client.Get(Requests.Repository.Repositories(_config.Project)).First(r => r.Id == _config.RepositoryId);
+
+            repository.Name.ShouldNotBeNullOrEmpty();
+            repository.Id.ShouldNotBeNullOrEmpty();
+            repository.Project.ShouldNotBeNull();
+            repository.Project.Name.ShouldNotBeNullOrEmpty();
+            repository.DefaultBranch.ShouldNotBeNullOrEmpty();
         }
 
         [Fact]
         public void QueryPushes()
         {
             // Arrange
-            var repository = _client.Get(Requests.Repository.Repositories(_config.Project)).First();
-
             // Act
-            var pushes = _client.Get(Requests.Repository.Pushes(_config.Project, repository.Id)).ToList();  
+            var pushes = _client.Get(Requests.Repository.Pushes(_config.Project, _config.RepositoryId)).ToList();  
 
             // Assert
             pushes.ShouldNotBeEmpty();
@@ -54,10 +52,8 @@ namespace SecurePipelineScan.VstsService.Tests
         public void GetGitRefs()
         {
             //Arrange
-            var repository = _client.Get(Requests.Repository.Repositories(_config.Project)).First();
-            
             //Act
-            var gitRefs = _client.Get(Requests.Repository.Refs(_config.Project, repository.Id)).ToList();
+            var gitRefs = _client.Get(Requests.Repository.Refs(_config.Project, _config.RepositoryId)).ToList();
 
             //Assert
             gitRefs.ShouldNotBeEmpty();

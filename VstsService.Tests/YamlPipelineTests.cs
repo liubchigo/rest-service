@@ -22,7 +22,7 @@ namespace SecurePipelineScan.VstsService.Tests
         [Fact]
         public async Task CanValidateYamlPipeline()
         {
-            var response = await _client.PostAsync(YamlPipeline.Parse(_config.Project, "275"),
+            var response = await _client.PostAsync(YamlPipeline.Parse(_config.Project, _config.BuildDefinitionYamlId),
                     new YamlPipeline.YamlPipelineRequest()
                 ).ConfigureAwait(false);
             Assert.NotNull(response.FinalYaml);

@@ -50,10 +50,10 @@ namespace SecurePipelineScan.VstsService.Tests
         [Fact]
         public async Task QueryAgentQueueTest()
         {
-            var response = await _client.GetAsync(Requests.DistributedTask.AgentQueue(_config.Project, 754));
-            response.Id.ShouldBe(754);
+            var response = await _client.GetAsync(Requests.DistributedTask.AgentQueue(_config.Project, _config.AgentQueueId));
+            response.Id.ShouldBe(_config.AgentQueueId);
             response.Pool.ShouldNotBeNull();
-            response.Pool.Id.ShouldBe(9);
+            response.Pool.Id.ShouldBe(_config.AgentPoolId);
         }
 
         [Fact]
