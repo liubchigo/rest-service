@@ -34,6 +34,8 @@ jobs:
         run: |
           export VERSION=$(git rev-list --count HEAD)
           dotnet pack -c release -o out -p:PackageVersion=1.0.0.$VERSION
+      - name: dotnet nuget add source
+        run: dotnet nuget add source --username wisses --password ${{secrets.GITHUB_TOKEN}} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/azure-devops-compliance/index.json"
       - name: dotnet nuget push
         run: dotnet nuget push ./out/*.nupkg --skip-duplicate --no-symbols true --api-key $key
         env:
