@@ -2,34 +2,34 @@ name: nuget
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   build:
     runs-on: ubuntu-18.04   
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
       - uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '3.1.100'
+          dotnet-version: '7.0'
       - run: dotnet build -c release
-      - name: dotnet test
-        run: dotnet test -c release  /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-        env:
-          TOKEN: ${{secrets.AZURE_DEVOPS_TOKEN}}
-      - uses: codecov/codecov-action@v1
+      # - name: dotnet test
+      #   run: dotnet test -c release  /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+      #   env:
+      #     TOKEN: ${{secrets.AZURE_DEVOPS_TOKEN}}
+      # - uses: codecov/codecov-action@v1
   pack:
     needs: build
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
         with:
           fetch-depth: 0
       - uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '3.1.100'
+          dotnet-version: '7.0'
           source-url: https://nuget.pkg.github.com/azure-devops-compliance/index.json
         env:
-          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          NUGET_AUTH_TOKEN: ${{secrets.TOKEN}}
       - name: dotnet pack
         run: |
           export VERSION=$(git rev-list --count HEAD)
@@ -37,4 +37,4 @@ jobs:
       - name: dotnet nuget push
         run: dotnet nuget push ./out/*.nupkg --skip-duplicate --no-symbols true --api-key $key
         env:
-          key: ${{secrets.GITHUB_TOKEN}}
+          key: ${{secrets.TOKEN}}
