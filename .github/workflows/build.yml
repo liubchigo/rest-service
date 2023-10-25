@@ -29,7 +29,7 @@ jobs:
           dotnet-version: '7.0'
           source-url: https://nuget.pkg.github.com/azure-devops-compliance/index.json
         env:
-          NUGET_AUTH_TOKEN: ${{secrets.TOKEN}}
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: dotnet pack
         run: |
           export VERSION=$(git rev-list --count HEAD)
@@ -37,4 +37,4 @@ jobs:
       - name: dotnet nuget push
         run: dotnet nuget push ./out/*.nupkg --skip-duplicate --no-symbols true --api-key $key
         env:
-          key: ${{secrets.TOKEN}}
+          key: ${{secrets.GITHUB_TOKEN}}
