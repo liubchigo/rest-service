@@ -25,6 +25,7 @@
     <Description>Handrolled client for Azure DevOps REST API</Description>
     <PackageTags>pipellines; build; release; azure devops; compliance</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageId>Nuget.Workflow</PackageId>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/azure-devops-compliance/rest-service</RepositoryUrl>
     <RootNamespace>SecurePipelineScan.VstsService</RootNamespace>
