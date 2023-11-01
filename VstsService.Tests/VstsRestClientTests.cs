@@ -105,7 +105,7 @@ namespace SecurePipelineScan.VstsService.Tests
         [Fact]
         public async Task NotFoundIsNull()
         {
-            var result = await _vsts.GetAsync(Requests.Builds.Build(_config.Project, "2342423"));
+            var result = await _vsts.GetAsync(Requests.Builds.BuildDefinition(_config.Project, "2342423"));
             result.ShouldBeNull();
         }
     }
