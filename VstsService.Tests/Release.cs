@@ -82,7 +82,7 @@ namespace SecurePipelineScan.VstsService.Tests
             artifact.Alias.ShouldNotBeNull();
         }
 
-        [Fact]
+        [Fact(Skip = "Releases are not used")]
         public void QueryReleasesByPipeline()
         {
             var releases = _client.Get(Requests.ReleaseManagement.Releases(
@@ -95,7 +95,7 @@ namespace SecurePipelineScan.VstsService.Tests
         }
 
 
-        [Fact]
+        [Fact(Skip = "Releases are not used")]
         public async Task QueryEnvironment()
         {
             var environment = await _client.GetAsync(Requests.ReleaseManagement.Environment(_project, "5", "7"));
@@ -120,7 +120,7 @@ namespace SecurePipelineScan.VstsService.Tests
             approval.IsAutomated.ShouldBeFalse();
         }
 
-        [Fact]
+        [Fact(Skip = "Releases are not used")]
         public void RequestForMultipleContinuesUsingContinuationToken()
         {
             var releases = _client.Get(
@@ -132,7 +132,7 @@ namespace SecurePipelineScan.VstsService.Tests
             releases.Count().ShouldBeGreaterThan(2);
         }
 
-        [Fact]
+        [Fact(Skip = "Releases are not used")]
         public async Task ConditionResultOnReleaseEnvironmentMustBeNullable()
         {
             var response = File.ReadAllText(Path.Join(EnvironmentAssets, "ConditionResultNull.json"));

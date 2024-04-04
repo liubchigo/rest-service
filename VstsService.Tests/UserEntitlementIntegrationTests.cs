@@ -56,7 +56,7 @@ namespace SecurePipelineScan.VstsService.Tests
             result.Count().ShouldBeGreaterThan(20);
         }
 
-        [Theory]
+        [Theory(Skip = "no licenses")]
         [InlineData("stakeholder")]
         [InlineData("express")]
         public async Task TestUpdateLicense(string license)

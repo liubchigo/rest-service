@@ -24,7 +24,7 @@ namespace SecurePipelineScan.VstsService.Tests
             definitions.ShouldAllBe(_ => !string.IsNullOrEmpty(_.Name));
         }
 
-        [Fact]
+        [Fact(Skip = "Releases are not used")]
         public async Task QueryReleaseDefinitionDetails()
         {
             var definition = await _client.GetAsync(Requests.ReleaseManagement.Definition(_config.Project, _config.ReleaseDefinitionId));

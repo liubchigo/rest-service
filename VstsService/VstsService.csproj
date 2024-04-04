@@ -28,6 +28,7 @@
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/azure-devops-compliance/rest-service</RepositoryUrl>
     <RootNamespace>SecurePipelineScan.VstsService</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

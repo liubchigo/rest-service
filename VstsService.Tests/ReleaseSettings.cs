@@ -17,9 +17,8 @@ namespace SecurePipelineScan.VstsService.Tests
             _client = new VstsRestClient(config.Organization, config.Token);
             _project = config.Project;
         }
-
-
-        [Fact]
+        
+        [Fact(Skip = "Releases are not used")]
         public async Task CheckForCredentialsAndOtherSecrets()
         {
             var settings = await _client.GetAsync(ReleaseManagement.Settings(_project));

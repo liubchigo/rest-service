@@ -61,7 +61,7 @@ namespace SecurePipelineScan.VstsService.Tests
         [Fact]
         public async Task QueryPolicy()
         {
-            var result = await _client.GetAsync(Requests.Policies.Policy(_config.Project, 1));
+            var result = await _client.GetAsync(Requests.Policies.Policy(_config.Project, 1550));
             result.ShouldNotBeNull();
         }
 

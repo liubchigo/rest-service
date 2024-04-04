@@ -19,7 +19,7 @@ namespace SecurePipelineScan.VstsService.Tests
             _client = new VstsRestClient(config.Organization, config.Token);
         }
 
-        [Fact]
+        [Fact(Skip = "Not using the request")]
         public async Task CanValidateYamlPipeline()
         {
             var response = await _client.PostAsync(YamlPipeline.Parse(_config.Project, _config.BuildDefinitionYamlId),
